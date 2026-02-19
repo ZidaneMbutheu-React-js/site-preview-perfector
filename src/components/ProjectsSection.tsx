@@ -1,48 +1,48 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 
 const projects = [
   {
-    title: "Agent Recherche IA",
-    description: "Agent autonome capable de naviguer sur le web, synthétiser des informations et générer des rapports détaillés en langage naturel.",
-    tags: ["LangChain", "GPT-4", "Python", "FastAPI"],
+    title: "Site Vitrine — Marque de Mode",
+    description: "Conception complète d'un site vitrine haut de gamme pour une marque de prêt-à-porter, avec une identité visuelle forte et une expérience utilisateur immersive.",
+    tags: ["UI/UX", "Webflow", "Identité visuelle", "Responsive"],
     gradient: "from-amber-500/20 to-orange-600/10",
     border: "border-amber-500/20",
   },
   {
-    title: "Dashboard Analytics",
-    description: "Tableau de bord temps réel pour visualiser des métriques business complexes avec des graphiques interactifs et alertes intelligentes.",
-    tags: ["React", "TypeScript", "Recharts", "Supabase"],
+    title: "Identité Visuelle — Startup Tech",
+    description: "Création d'une identité de marque complète (logo, charte graphique, templates) pour une startup technologique en phase de lancement.",
+    tags: ["Branding", "Illustrator", "Charte graphique", "Logo"],
     gradient: "from-blue-500/20 to-cyan-600/10",
     border: "border-blue-500/20",
   },
   {
-    title: "Chatbot E-commerce",
-    description: "Assistant IA intégré à une boutique en ligne, capable de conseiller les clients, gérer les commandes et personnaliser l'expérience.",
-    tags: ["OpenAI", "Node.js", "React", "Stripe"],
+    title: "Application Mobile — Fitness",
+    description: "Design UI/UX d'une application de suivi fitness avec parcours utilisateur optimisé, composants réutilisables et design system documenté.",
+    tags: ["Figma", "Mobile UI", "Design System", "Prototypage"],
     gradient: "from-green-500/20 to-emerald-600/10",
     border: "border-green-500/20",
   },
   {
-    title: "Pipeline d'Automatisation",
-    description: "Système de traitement de documents automatisé utilisant l'IA pour extraire, classer et router intelligemment les contenus.",
-    tags: ["Python", "LangGraph", "Docker", "PostgreSQL"],
+    title: "E-commerce — Artisanat Local",
+    description: "Refonte complète d'une boutique en ligne d'artisanat, avec une expérience d'achat simplifiée et une mise en valeur des produits faits main.",
+    tags: ["UI/UX", "WordPress", "WooCommerce", "Responsive"],
     gradient: "from-violet-500/20 to-purple-600/10",
     border: "border-violet-500/20",
   },
   {
-    title: "Assistant Code Review",
-    description: "Outil IA intégré à GitHub Actions qui analyse automatiquement les pull requests et suggère des améliorations contextualisées.",
-    tags: ["GitHub API", "GPT-4", "TypeScript", "Webhooks"],
+    title: "Dashboard — SaaS Analytics",
+    description: "Conception d'une interface tableau de bord complexe avec visualisation de données, onboarding guidé et composants interactifs accessibles.",
+    tags: ["UI/UX", "Figma", "Data Viz", "Accessibilité"],
     gradient: "from-rose-500/20 to-red-600/10",
     border: "border-rose-500/20",
   },
   {
-    title: "Plateforme SaaS No-Code",
-    description: "Interface drag-and-drop permettant aux non-développeurs de créer leurs propres agents IA sans écrire une seule ligne de code.",
-    tags: ["React Flow", "OpenAI", "Supabase", "Tailwind"],
+    title: "Portfolio — Photographe",
+    description: "Site portfolio minimaliste et élégant pour mettre en valeur l'œuvre photographique, avec galerie immersive et navigation fluide.",
+    tags: ["Web Design", "Webflow", "Galerie", "Animation"],
     gradient: "from-gold/20 to-yellow-600/10",
     border: "border-gold/20",
   },
@@ -63,10 +63,10 @@ export default function ProjectsSection() {
         >
           <p className="text-gold text-sm font-medium tracking-widest uppercase mb-4">Portfolio</p>
           <h2 className="font-display text-4xl md:text-5xl font-bold">
-            Mes <span className="gradient-text">Projets</span>
+            Mes <span className="gradient-text">Réalisations</span>
           </h2>
           <p className="text-muted-foreground mt-4 max-w-xl mx-auto">
-            Une sélection de mes réalisations les plus récentes en IA et développement web.
+            Une sélection de projets qui illustrent mon approche créative et collaborative.
           </p>
         </motion.div>
 
@@ -87,14 +87,14 @@ export default function ProjectsSection() {
                   <h3 className="font-display font-bold text-foreground text-lg leading-tight">
                     {project.title}
                   </h3>
-                  <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <button className="w-8 h-8 rounded-full bg-surface flex items-center justify-center hover:bg-gold/20 transition-colors">
-                      <Github size={14} className="text-muted-foreground" />
-                    </button>
-                    <button className="w-8 h-8 rounded-full bg-surface flex items-center justify-center hover:bg-gold/20 transition-colors">
-                      <ExternalLink size={14} className="text-muted-foreground" />
-                    </button>
-                  </div>
+                  <a
+                    href="https://www.behance.net/zidanembutheu"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-8 h-8 rounded-full bg-surface flex items-center justify-center hover:bg-gold/20 transition-colors opacity-0 group-hover:opacity-100 shrink-0 ml-2"
+                  >
+                    <ExternalLink size={14} className="text-muted-foreground" />
+                  </a>
                 </div>
 
                 <p className="text-muted-foreground text-sm leading-relaxed mb-5">
@@ -115,6 +115,24 @@ export default function ProjectsSection() {
             </motion.div>
           ))}
         </div>
+
+        {/* Behance CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.7 }}
+          className="text-center mt-12"
+        >
+          <a
+            href="https://www.behance.net/zidanembutheu"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-full border border-gold/50 text-gold font-semibold font-display hover:bg-gold hover:text-primary-foreground transition-all duration-300 hover:shadow-[0_0_30px_hsl(38_90%_55%/0.4)]"
+          >
+            <ExternalLink size={16} />
+            Voir tout mon portfolio sur Behance
+          </a>
+        </motion.div>
       </div>
     </section>
   );

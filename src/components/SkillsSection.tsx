@@ -4,30 +4,30 @@ import { useRef } from "react";
 
 const skillGroups = [
   {
-    category: "Intelligence Artificielle",
+    category: "Design Web",
     skills: [
-      { name: "LangChain / LangGraph", level: 90 },
-      { name: "OpenAI / GPT-4", level: 92 },
-      { name: "Prompt Engineering", level: 88 },
-      { name: "RAG & Vector DBs", level: 85 },
+      { name: "Conception UI/UX", level: 95 },
+      { name: "Webflow / WordPress", level: 88 },
+      { name: "Responsive Design", level: 93 },
+      { name: "Prototypage", level: 90 },
     ],
   },
   {
-    category: "Développement Web",
+    category: "Design Graphique",
     skills: [
-      { name: "React / TypeScript", level: 95 },
-      { name: "Node.js / Python", level: 88 },
-      { name: "TailwindCSS", level: 93 },
-      { name: "API REST & GraphQL", level: 87 },
+      { name: "Identité visuelle", level: 95 },
+      { name: "Adobe Illustrator", level: 90 },
+      { name: "Adobe Photoshop", level: 88 },
+      { name: "Typographie", level: 92 },
     ],
   },
   {
-    category: "Outils & DevOps",
+    category: "Outils & Méthodes",
     skills: [
-      { name: "Git / GitHub", level: 90 },
-      { name: "Docker", level: 78 },
-      { name: "Supabase / Firebase", level: 85 },
-      { name: "Vercel / Railway", level: 88 },
+      { name: "Figma", level: 96 },
+      { name: "Adobe XD", level: 85 },
+      { name: "Design System", level: 90 },
+      { name: "Recherche utilisateur", level: 82 },
     ],
   },
 ];

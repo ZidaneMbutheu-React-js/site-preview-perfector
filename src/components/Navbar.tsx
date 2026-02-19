@@ -28,7 +28,7 @@ export default function Navbar() {
     >
       <nav className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <a href="#hero" className="font-display text-xl font-bold gradient-text">
-          Kimi<span className="text-foreground">Agent</span>
+          MBUTHEU<span className="text-foreground"> DESIGN</span>
         </a>
 
         {/* Desktop */}

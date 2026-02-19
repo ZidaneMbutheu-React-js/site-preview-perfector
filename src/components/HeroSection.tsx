@@ -39,10 +39,10 @@ export default function HeroSection() {
           transition={{ duration: 0.7, delay: 0.1 }}
           className="font-display text-5xl md:text-7xl lg:text-8xl font-bold leading-tight mb-6"
         >
-          Agent IA &{" "}
-          <span className="gradient-text">Développeur</span>
+          Bienvenue chez{" "}
+          <span className="gradient-text">MBUTHEU</span>
           <br />
-          Créatif
+          DESIGN
         </motion.h1>
 
         <motion.p
@@ -51,8 +51,9 @@ export default function HeroSection() {
           transition={{ duration: 0.7, delay: 0.2 }}
           className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed"
         >
-          Je conçois et développe des agents intelligents, des interfaces web modernes et des
-          solutions automatisées qui transforment vos idées en réalité.
+          Je crée des expériences numériques sur mesure qui aident les marques à se démarquer
+          et à se connecter avec leur public. Des designs visuellement captivants et
+          des interfaces intuitives.
         </motion.p>
 
         <motion.div
@@ -71,7 +72,7 @@ export default function HeroSection() {
             href="#contact"
             className="px-8 py-4 rounded-full border border-border text-foreground font-semibold font-display hover:border-gold/60 transition-all duration-300"
           >
-            Me contacter
+            Travaillons ensemble
           </a>
         </motion.div>
       </div>
