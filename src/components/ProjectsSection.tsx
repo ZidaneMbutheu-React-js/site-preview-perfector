@@ -3,55 +3,61 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { ExternalLink } from "lucide-react";
 
-import projectMode from "@/assets/project-mode.jpg";
-import projectStartup from "@/assets/project-startup.jpg";
-import projectFitness from "@/assets/project-fitness.jpg";
-import projectArtisanat from "@/assets/project-artisanat.jpg";
-import projectSaas from "@/assets/project-saas.jpg";
-import projectPhoto from "@/assets/project-photo.jpg";
+import projectArchitecture from "@/assets/project-architecture.jpg";
+import projectEcommerce from "@/assets/project-ecommerce.jpg";
+import projectFarm from "@/assets/project-farm.jpg";
+import projectAds from "@/assets/project-ads.jpg";
+import projectPoster from "@/assets/project-poster.jpg";
+import projectHero from "@/assets/project-hero.jpg";
 
 const projects = [
   {
-    title: "Site Vitrine — Marque de Mode",
-    description: "Conception complète d'un site vitrine haut de gamme pour une marque de prêt-à-porter, avec une identité visuelle forte et une expérience utilisateur immersive.",
-    tags: ["UI/UX", "Webflow", "Identité visuelle", "Responsive"],
-    image: projectMode,
-    border: "border-amber-500/20",
-  },
-  {
-    title: "Identité Visuelle — Startup Tech",
-    description: "Création d'une identité de marque complète (logo, charte graphique, templates) pour une startup technologique en phase de lancement.",
-    tags: ["Branding", "Illustrator", "Charte graphique", "Logo"],
-    image: projectStartup,
-    border: "border-blue-500/20",
-  },
-  {
-    title: "Application Mobile — Fitness",
-    description: "Design UI/UX d'une application de suivi fitness avec parcours utilisateur optimisé, composants réutilisables et design system documenté.",
-    tags: ["Figma", "Mobile UI", "Design System", "Prototypage"],
-    image: projectFitness,
+    title: "Architecture Website — UI/UX Design",
+    description: "Design complet d'un site web pour un cabinet d'architecture durable, avec une navigation immersive et une mise en valeur des projets de construction écologique.",
+    tags: ["UI/UX", "Web Design", "Architecture", "Responsive"],
+    image: projectArchitecture,
+    link: "https://www.behance.net/gallery/244452161/Architecture-Website-UIUX-Dedsign",
     border: "border-green-500/20",
   },
   {
-    title: "E-commerce — Artisanat Local",
-    description: "Refonte complète d'une boutique en ligne d'artisanat, avec une expérience d'achat simplifiée et une mise en valeur des produits faits main.",
-    tags: ["UI/UX", "WordPress", "WooCommerce", "Responsive"],
-    image: projectArtisanat,
+    title: "Modern E-commerce — UI/UX Design",
+    description: "Conception d'une plateforme e-commerce moderne avec parcours d'achat optimisé, fiches produits détaillées et interface de panier intuitive.",
+    tags: ["E-commerce", "UI/UX", "Figma", "Responsive"],
+    image: projectEcommerce,
+    link: "https://www.behance.net/gallery/244452031/Modern-E-commerce-UIUX-Design",
+    border: "border-amber-500/20",
+  },
+  {
+    title: "Farm Website — UI/UX Design",
+    description: "Site web pour une ferme bio avec une identité visuelle naturelle, catalogue de produits frais et système de commande en ligne simplifié.",
+    tags: ["UI/UX", "Web Design", "Agriculture", "Branding"],
+    image: projectFarm,
+    link: "https://www.behance.net/gallery/243689309/Farm-Website-UIUX-Design",
+    border: "border-emerald-500/20",
+  },
+  {
+    title: "Ads Banners — Design Publicitaire",
+    description: "Création d'une série de bannières publicitaires percutantes pour les réseaux sociaux, avec des visuels dynamiques et des appels à l'action efficaces.",
+    tags: ["Graphic Design", "Social Media", "Advertising", "Illustrator"],
+    image: projectAds,
+    link: "https://www.behance.net/gallery/243246301/Ads-banner",
     border: "border-violet-500/20",
   },
   {
-    title: "Dashboard — SaaS Analytics",
-    description: "Conception d'une interface tableau de bord complexe avec visualisation de données, onboarding guidé et composants interactifs accessibles.",
-    tags: ["UI/UX", "Figma", "Data Viz", "Accessibilité"],
-    image: projectSaas,
+    title: "Coming Soon — Poster Design",
+    description: "Conception d'une affiche événementielle avec typographie bold, compteur de lancement et identité visuelle mémorable pour générer l'anticipation.",
+    tags: ["Poster", "Typographie", "Graphic Design", "Événementiel"],
+    image: projectPoster,
+    link: "https://www.behance.net/gallery/243640519/Coming-soon-poster",
     border: "border-rose-500/20",
   },
   {
-    title: "Portfolio — Photographe",
-    description: "Site portfolio minimaliste et élégant pour mettre en valeur l'œuvre photographique, avec galerie immersive et navigation fluide.",
-    tags: ["Web Design", "Webflow", "Galerie", "Animation"],
-    image: projectPhoto,
-    border: "border-gold/20",
+    title: "Hero Section — Page Design",
+    description: "Design de sections hero modernes avec gradients, animations subtiles et hiérarchie visuelle claire pour maximiser l'engagement utilisateur.",
+    tags: ["Web Design", "UI/UX", "Landing Page", "Gradient"],
+    image: projectHero,
+    link: "https://www.behance.net/gallery/242751655/Hero-Section-Page",
+    border: "border-blue-500/20",
   },
 ];
 
@@ -73,7 +79,7 @@ export default function ProjectsSection() {
             Mes <span className="gradient-text">Réalisations</span>
           </h2>
           <p className="text-muted-foreground mt-4 max-w-xl mx-auto">
-            Une sélection de projets qui illustrent mon approche créative et collaborative.
+            Une sélection de projets réels issus de mon portfolio Behance.
           </p>
         </motion.div>
 
@@ -86,7 +92,6 @@ export default function ProjectsSection() {
               transition={{ duration: 0.6, delay: i * 0.1 }}
               className={`relative group card-glass rounded-2xl border ${project.border} hover:scale-[1.02] transition-all duration-300 overflow-hidden`}
             >
-              {/* Project image */}
               <div className="relative h-48 overflow-hidden">
                 <img
                   src={project.image}
@@ -96,7 +101,7 @@ export default function ProjectsSection() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent" />
                 <a
-                  href="https://www.behance.net/zidanembutheu"
+                  href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="absolute top-3 right-3 w-8 h-8 rounded-full bg-surface/80 backdrop-blur-sm flex items-center justify-center hover:bg-gold/20 transition-colors opacity-0 group-hover:opacity-100"
@@ -127,7 +132,6 @@ export default function ProjectsSection() {
           ))}
         </div>
 
-        {/* Behance CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
