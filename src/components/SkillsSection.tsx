@@ -22,6 +22,15 @@ const skillGroups = [
     ],
   },
   {
+    category: "Vidéo & Motion",
+    skills: [
+      { name: "Montage Vidéo", level: 55 },
+      { name: "Motion Design", level: 40 },
+      { name: "Adobe Premiere Pro", level: 55 },
+      { name: "Adobe After Effects", level: 40 },
+    ],
+  },
+  {
     category: "Outils & Méthodes",
     skills: [
       { name: "Figma", level: 96 },
@@ -51,7 +60,7 @@ export default function SkillsSection() {
           </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {skillGroups.map((group, gi) => (
             <motion.div
               key={group.category}
