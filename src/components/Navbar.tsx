@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const navLinks = [
   { label: "Accueil", href: "#hero" },
   { label: "À propos", href: "#about" },
   { label: "Compétences", href: "#skills" },
   { label: "Projets", href: "#projects" },
+  { label: "Blog", href: "/blog", isRoute: true },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -35,12 +37,21 @@ export default function Navbar() {
         <ul className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <li key={link.href}>
-              <a
-                href={link.href}
-                className="text-muted-foreground hover:text-gold transition-colors text-sm font-medium tracking-wide"
-              >
-                {link.label}
-              </a>
+              {link.isRoute ? (
+                <Link
+                  to={link.href}
+                  className="text-muted-foreground hover:text-gold transition-colors text-sm font-medium tracking-wide"
+                >
+                  {link.label}
+                </Link>
+              ) : (
+                <a
+                  href={link.href}
+                  className="text-muted-foreground hover:text-gold transition-colors text-sm font-medium tracking-wide"
+                >
+                  {link.label}
+                </a>
+              )}
             </li>
           ))}
         </ul>
@@ -71,14 +82,25 @@ export default function Navbar() {
             className="md:hidden bg-surface border-b border-border px-6 pb-6"
           >
             {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={() => setOpen(false)}
-                className="block py-3 text-muted-foreground hover:text-gold transition-colors text-sm font-medium"
-              >
-                {link.label}
-              </a>
+              link.isRoute ? (
+                <Link
+                  key={link.href}
+                  to={link.href}
+                  onClick={() => setOpen(false)}
+                  className="block py-3 text-muted-foreground hover:text-gold transition-colors text-sm font-medium"
+                >
+                  {link.label}
+                </Link>
+              ) : (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setOpen(false)}
+                  className="block py-3 text-muted-foreground hover:text-gold transition-colors text-sm font-medium"
+                >
+                  {link.label}
+                </a>
+              )
             ))}
           </motion.div>
         )}

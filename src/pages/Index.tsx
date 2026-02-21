@@ -6,6 +6,8 @@ import ProjectsSection from "@/components/ProjectsSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import ParallaxSection from "@/components/ParallaxSection";
+import SectionDivider from "@/components/SectionDivider";
 
 const Index = () => {
   return (
@@ -13,11 +15,26 @@ const Index = () => {
       <Navbar />
       <main>
         <HeroSection />
-        <AboutSection />
-        <SkillsSection />
-        <ProjectsSection />
-        <TestimonialsSection />
-        <ContactSection />
+        <SectionDivider />
+        <ParallaxSection offset={30}>
+          <AboutSection />
+        </ParallaxSection>
+        <SectionDivider />
+        <ParallaxSection offset={25}>
+          <SkillsSection />
+        </ParallaxSection>
+        <SectionDivider />
+        <ParallaxSection offset={35}>
+          <ProjectsSection />
+        </ParallaxSection>
+        <SectionDivider />
+        <ParallaxSection offset={20}>
+          <TestimonialsSection />
+        </ParallaxSection>
+        <SectionDivider />
+        <ParallaxSection offset={25}>
+          <ContactSection />
+        </ParallaxSection>
       </main>
       <Footer />
     </div>
@@ -25,4 +42,3 @@ const Index = () => {
 };
 
 export default Index;
-
