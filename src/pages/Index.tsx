@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
@@ -12,6 +13,15 @@ import SectionDivider from "@/components/SectionDivider";
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>MBUTHEU DESIGN — UI/UX & Web Design Sur Mesure</title>
+        <meta name="description" content="Designer UI/UX freelance spécialisé en création de sites web sur mesure, identités visuelles et interfaces Figma et Webflow. Disponible pour vos projets." />
+        <link rel="canonical" href="https://mbutheudesign.com/" />
+        <meta property="og:title" content="MBUTHEU DESIGN — UI/UX & Web Design Sur Mesure" />
+        <meta property="og:description" content="Designer UI/UX freelance spécialisé en création de sites web sur mesure, identités visuelles et interfaces Figma et Webflow. Disponible pour vos projets." />
+        <meta property="og:image" content="/images/og-accueil.jpg" />
+        <meta property="og:url" content="https://mbutheudesign.com/" />
+      </Helmet>
       <Navbar />
       <main>
         <HeroSection />
