@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { Calendar, Clock, ArrowRight, ArrowLeft, Tag } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -8,10 +9,17 @@ import { articles } from "@/data/articles";
 export default function Blog() {
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>Blog Design & Web — Conseils UI/UX | MBUTHEU DESIGN</title>
+        <meta name="description" content="Conseils, tendances et tutoriels sur le web design, l'UI/UX, Figma, Webflow et l'identité visuelle. Ressources gratuites pour designers et entrepreneurs." />
+        <link rel="canonical" href="https://mbutheudesign.com/blog" />
+        <meta property="og:title" content="Blog Design & Web — Conseils UI/UX | MBUTHEU DESIGN" />
+        <meta property="og:description" content="Conseils, tendances et tutoriels sur le web design, l'UI/UX, Figma, Webflow et l'identité visuelle. Ressources gratuites pour designers et entrepreneurs." />
+        <meta property="og:url" content="https://mbutheudesign.com/blog" />
+      </Helmet>
       <Navbar />
       <main className="pt-24 pb-16 px-6">
         <div className="max-w-6xl mx-auto">
-          {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -42,7 +50,6 @@ export default function Blog() {
             </p>
           </motion.div>
 
-          {/* Articles grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {articles.map((article, i) => (
               <motion.article

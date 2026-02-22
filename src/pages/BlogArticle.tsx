@@ -1,4 +1,5 @@
 import { useParams, Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { Calendar, Clock, ArrowLeft, ArrowRight, Tag, ChevronRight } from "lucide-react";
 import { useEffect, useMemo } from "react";
@@ -17,27 +18,6 @@ export default function BlogArticle() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [slug]);
-
-  useEffect(() => {
-    if (!article) return;
-    document.title = article.metaTitle;
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) metaDesc.setAttribute("content", article.metaDescription);
-
-    const setMeta = (property: string, content: string) => {
-      let el = document.querySelector(`meta[property="${property}"]`);
-      if (!el) {
-        el = document.createElement("meta");
-        el.setAttribute("property", property);
-        document.head.appendChild(el);
-      }
-      el.setAttribute("content", content);
-    };
-    setMeta("og:title", article.metaTitle);
-    setMeta("og:description", article.metaDescription);
-    setMeta("og:image", article.image);
-    setMeta("og:type", "article");
-  }, [article]);
 
   if (!article) {
     return (
@@ -67,6 +47,16 @@ export default function BlogArticle() {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>{article.metaTitle}</title>
+        <meta name="description" content={article.metaDescription} />
+        <link rel="canonical" href={`https://mbutheudesign.com/blog/${article.id}`} />
+        <meta property="og:title" content={article.metaTitle} />
+        <meta property="og:description" content={article.metaDescription} />
+        <meta property="og:image" content={article.image} />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content={`https://mbutheudesign.com/blog/${article.id}`} />
+      </Helmet>
       <Navbar />
 
       <script
@@ -88,7 +78,6 @@ export default function BlogArticle() {
 
       <main className="pt-24 pb-16 px-6">
         <article className="max-w-3xl mx-auto">
-          {/* Breadcrumb */}
           <motion.nav
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -103,7 +92,6 @@ export default function BlogArticle() {
             <span className="text-foreground truncate max-w-[200px]">{article.title}</span>
           </motion.nav>
 
-          {/* Hero */}
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gold/20 text-gold text-xs font-medium mb-4">
               <Tag size={12} />
@@ -120,7 +108,6 @@ export default function BlogArticle() {
             </div>
           </motion.div>
 
-          {/* Cover */}
           <motion.div
             initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -131,7 +118,6 @@ export default function BlogArticle() {
             <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />
           </motion.div>
 
-          {/* Content */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -142,14 +128,12 @@ export default function BlogArticle() {
             ))}
           </motion.div>
 
-          {/* Tags */}
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }} className="flex flex-wrap gap-2 mt-12 pt-8 border-t border-border">
             {article.tags.map((tag) => (
               <span key={tag} className="px-3 py-1 rounded-full bg-muted text-muted-foreground text-xs">#{tag}</span>
             ))}
           </motion.div>
 
-          {/* Navigation */}
           <nav className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-12 pt-8 border-t border-border">
             {prevArticle ? (
               <Link to={`/blog/${prevArticle.id}`} className="group card-glass rounded-xl border border-border p-5 hover:border-gold/30 transition-all">
