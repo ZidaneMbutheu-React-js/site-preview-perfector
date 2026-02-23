@@ -10,6 +10,7 @@ export interface Article {
   metaDescription: string;
   content: string[];
   tags: string[];
+  relatedSlugs?: string[];
 }
 
 export const articles: Article[] = [
@@ -27,12 +28,13 @@ export const articles: Article[] = [
     metaDescription:
       "Bento grid, glassmorphisme, typos XXL, micro-interactions — tour d'horizon concret des tendances web design qui convertissent en 2024.",
     tags: ["web design", "tendances", "UI", "glassmorphisme", "bento grid"],
+    relatedSlugs: ["importance-ui-ux", "motion-design-web", "responsive-design-mobile-first"],
     content: [
-      "J'ai passé les six derniers mois à décortiquer des centaines de sites primés sur Awwwards et CSS Design Awards. Pas pour le plaisir de scroller — même si, soyons honnêtes, c'est un plaisir coupable — mais pour comprendre ce qui sépare un site qui retient l'attention d'un site qu'on quitte en deux secondes. Voici ce que j'en retiens, sans filtre.",
+      "J'ai passé les six derniers mois à décortiquer des centaines de sites primés sur [Awwwards](https://www.awwwards.com/){external} et [CSS Design Awards](https://www.cssdesignawards.com/){external}. Pas pour le plaisir de scroller — même si, soyons honnêtes, c'est un plaisir coupable — mais pour comprendre ce qui sépare un site qui retient l'attention d'un site qu'on quitte en deux secondes. Voici ce que j'en retiens, sans filtre.",
 
       "## Le Bento Grid : quand la grille devient narrative",
       "Vous connaissez le bento, cette boîte à compartiments japonaise ? Le principe est simple : au lieu d'empiler des blocs les uns sous les autres comme en 2019, on organise le contenu dans une grille asymétrique où chaque cellule a son propre rythme. Apple l'a popularisé avec ses keynotes, et ça a contaminé tout le web — pour le meilleur.",
-      "Ce qui fonctionne, c'est que le bento grid oblige à hiérarchiser. On ne peut pas tout mettre au même niveau. Du coup, l'œil sait où aller, le message passe plus vite, et le taux de rebond diminue. J'ai testé ça sur trois projets clients cette année : en moyenne, le temps passé sur la page a augmenté de 35%. Pas mal pour une histoire de rectangles.",
+      "Ce qui fonctionne, c'est que le bento grid oblige à hiérarchiser. On ne peut pas tout mettre au même niveau. Du coup, l'œil sait où aller, le message passe plus vite, et le taux de rebond diminue. Si vous cherchez une [conception web sur mesure](/solutions-design) qui utilise ces principes modernes, c'est exactement ce type d'approche que je privilégie.",
 
       "## Glassmorphisme : la transparence qui fait la différence",
       "Le glassmorphisme — ces effets de verre dépoli avec un flou d'arrière-plan — a déjà quelques années, mais il a mûri. On ne l'utilise plus n'importe comment. En 2024, il sert surtout pour les cartes flottantes, les barres de navigation et les overlays. Le truc, c'est de ne pas en abuser : un seul élément en glass sur une page, ça crée de la profondeur. Dix éléments, ça donne la migraine.",
@@ -40,15 +42,15 @@ export const articles: Article[] = [
 
       "## Typographies XXL : osez prendre de la place",
       "Le texte en 14px bien rangé dans sa colonne, c'est fini. Les sites qui marquent en 2024 utilisent des titres en 80px, 120px, parfois 200px. Le texte devient un élément graphique à part entière. Il déborde, il se superpose aux images, il anime la page.",
-      "Mais attention — et c'est là que beaucoup se plantent — une typo XXL mal choisie, c'est catastrophique. Il faut une police avec du caractère : une serif contrastée, une grotesque bien dessinée, une display expressive. Et surtout, il faut que le responsive suive. Un titre en 200px sur desktop qui passe à 40px sur mobile sans transition, ça casse toute la mise en scène.",
+      "Mais attention — et c'est là que beaucoup se plantent — une typo XXL mal choisie, c'est catastrophique. Il faut une police avec du caractère : une serif contrastée, une grotesque bien dessinée, une display expressive. Et surtout, il faut que le responsive suive. Un titre en 200px sur desktop qui passe à 40px sur mobile sans transition, ça casse toute la mise en scène. Pour approfondir ce sujet, consultez mon article sur [le responsive design mobile-first](/blog/responsive-design-mobile-first).",
 
       "## Micro-interactions : le détail qui change tout",
       "Un bouton qui réagit au survol avec un léger rebond. Un menu qui s'ouvre avec une animation décalée sur chaque item. Une icône qui se transforme quand on scrolle. Ces petits détails, invisibles individuellement, créent ensemble une sensation de qualité. Le visiteur ne sait pas pourquoi il trouve le site « bien fait », mais il le sent.",
-      "Mon approche : je définis trois ou quatre micro-interactions clés par projet. Pas plus. Chacune doit servir un objectif — confirmer une action, guider l'attention, créer de la surprise. Le reste, c'est du bruit.",
+      "Mon approche : je définis trois ou quatre micro-interactions clés par projet. Pas plus. Chacune doit servir un objectif — confirmer une action, guider l'attention, créer de la surprise. Le reste, c'est du bruit. J'en parle plus en détail dans mon article sur [le motion design au service du web](/blog/motion-design-web).",
 
       "## Ce que j'en pense, concrètement",
       "Les tendances, c'est bien pour s'inspirer. Mais un bon site ne suit pas les modes — il les utilise au service d'un message. Avant de plaquer un bento grid ou une typo géante sur votre projet, posez-vous la question : est-ce que ça sert mon utilisateur ? Si oui, foncez. Si c'est juste pour faire « moderne », passez votre chemin.",
-      "C'est cette approche qui fait la différence entre un site qui impressionne cinq minutes et un site qui convertit pendant cinq ans.",
+      "C'est cette approche qui fait la différence entre un site qui impressionne cinq minutes et un site qui convertit pendant cinq ans. Vous avez un projet de refonte en tête ? [Parlons-en ensemble](/contact).",
     ],
   },
   {
@@ -65,8 +67,9 @@ export const articles: Article[] = [
     metaDescription:
       "Investir dans le UI/UX multiplie vos conversions. Retours concrets, chiffres et méthode pour faire de l'expérience utilisateur un levier de croissance.",
     tags: ["UI/UX", "conversion", "expérience utilisateur", "business", "ROI"],
+    relatedSlugs: ["tendances-web-design-2024", "identite-visuelle-marque", "figma-astuces-productivite"],
     content: [
-      "Il y a un chiffre qui revient souvent dans les conférences design : chaque dollar investi en UX rapporte entre 10 et 100 dollars. Je l'ai longtemps trouvé exagéré. Et puis j'ai commencé à mesurer les résultats sur mes propres projets. Spoiler : c'est plutôt conservateur.",
+      "Il y a un chiffre qui revient souvent dans les conférences design : chaque dollar investi en UX rapporte entre 10 et 100 dollars. Je l'ai longtemps trouvé exagéré. Et puis j'ai commencé à mesurer les résultats sur mes propres projets. Spoiler : c'est plutôt conservateur. Le [Nielsen Norman Group](https://www.nngroup.com/){external}, référence mondiale en UX research, a documenté ces retours sur investissement depuis des décennies.",
 
       "## Le vrai coût d'un mauvais design",
       "On parle rarement des projets qui échouent silencieusement. Ce site e-commerce avec un beau catalogue mais un tunnel d'achat tellement confus que 78% des paniers sont abandonnés. Cette app SaaS avec des fonctionnalités incroyables mais un onboarding si complexe que les utilisateurs décrochent au troisième écran.",
@@ -75,21 +78,21 @@ export const articles: Article[] = [
       "## UI vs UX : arrêtons la confusion",
       "Je le dis souvent à mes clients : l'UI, c'est la robe. L'UX, c'est la coupe. Un vêtement peut être magnifique sur le cintre et impossible à porter. C'est pareil pour un site.",
       "L'UI (User Interface), c'est ce que l'utilisateur voit : les couleurs, les typographies, les espacements, la mise en page. C'est ce qui crée la première impression — et on sait qu'elle se forme en 50 millisecondes.",
-      "L'UX (User Experience), c'est ce que l'utilisateur ressent : est-ce que le parcours est fluide ? Est-ce que l'information est là où on l'attend ? Est-ce que l'action souhaitée se fait en trois clics ou en douze ?",
+      "L'UX (User Experience), c'est ce que l'utilisateur ressent : est-ce que le parcours est fluide ? Est-ce que l'information est là où on l'attend ? Est-ce que l'action souhaitée se fait en trois clics ou en douze ? Pour bien comprendre ces enjeux, [Google Material Design](https://m3.material.io/){external} est une excellente ressource.",
       "Un bon projet, c'est quand les deux sont alignés. Quand la beauté sert la clarté, et la clarté génère des résultats.",
 
       "## Trois changements UX qui ont transformé des projets réels",
       "Sur un site vitrine pour un cabinet d'architectes, j'ai simplement déplacé le bouton de contact du footer vers un sticky header. Résultat : +180% de demandes de devis en un mois.",
       "Pour une boutique en ligne, j'ai réduit le formulaire de commande de 8 champs à 4 (en rendant le reste optionnel). Le taux de conversion est passé de 1,2% à 3,8%.",
       "Sur un dashboard SaaS, j'ai remplacé un tableau dense par des cartes visuelles avec des indicateurs de couleur. Le temps de formation des nouveaux utilisateurs a été divisé par deux.",
-      "Rien de spectaculaire en apparence. Pas de refonte complète, pas de budget colossal. Juste des ajustements ciblés, guidés par l'observation des utilisateurs réels.",
+      "Rien de spectaculaire en apparence. Pas de refonte complète, pas de budget colossal. Juste des ajustements ciblés, guidés par l'observation des utilisateurs réels. Découvrez mes [solutions design](/solutions-design) pour ce type d'accompagnement.",
 
       "## Comment mesurer le ROI du design",
       "Voici les métriques que je suis systématiquement : le taux de conversion (évidemment), mais aussi le taux de rebond, le temps moyen sur la page, le taux de complétion des formulaires et le Net Promoter Score quand c'est possible.",
       "Mon conseil : avant toute refonte, prenez ces chiffres. Après, mesurez à nouveau. C'est la seule façon de prouver — chiffres à l'appui — que le design n'est pas un coût, c'est un investissement.",
 
       "## En résumé",
-      "Le UI/UX, ce n'est pas faire joli. C'est comprendre les gens, anticiper leurs besoins, et rendre chaque interaction avec votre produit aussi naturelle que possible. Et ça, ça se traduit directement sur votre chiffre d'affaires.",
+      "Le UI/UX, ce n'est pas faire joli. C'est comprendre les gens, anticiper leurs besoins, et rendre chaque interaction avec votre produit aussi naturelle que possible. Et ça, ça se traduit directement sur votre chiffre d'affaires. Vous voulez optimiser l'expérience de votre site ? [Contactez-moi](/contact) pour en discuter.",
     ],
   },
   {
@@ -106,12 +109,13 @@ export const articles: Article[] = [
     metaDescription:
       "Logo, couleurs, typographie, charte graphique — comment créer une identité visuelle mémorable et cohérente. Guide pas à pas d'un designer.",
     tags: ["branding", "identité visuelle", "logo", "charte graphique", "marque"],
+    relatedSlugs: ["importance-ui-ux", "tendances-web-design-2024", "figma-astuces-productivite"],
     content: [
       "La semaine dernière, un client m'a dit : « Je veux un logo. Un truc simple, ça devrait être rapide. » Je lui ai répondu qu'un logo sans stratégie de marque, c'est comme un prénom sans personnalité — ça ne dit rien. On a fini par passer trois semaines sur son identité complète. Et il ne le regrette pas.",
 
       "## Ce qu'est vraiment une identité visuelle",
       "Beaucoup pensent que l'identité visuelle, c'est un logo et deux couleurs. En réalité, c'est un système complet qui traduit la personnalité de votre marque en langage visuel. Ça inclut le logo, oui, mais aussi la palette de couleurs, les typographies, le style d'illustration ou de photo, la mise en page, le ton graphique général.",
-      "L'objectif ? Qu'on reconnaisse votre marque sans même voir votre nom. Pensez à Coca-Cola sans le logo — juste le rouge, la courbe, la typographie. Vous savez immédiatement de qui il s'agit. C'est ça, une identité visuelle réussie.",
+      "L'objectif ? Qu'on reconnaisse votre marque sans même voir votre nom. Pensez à Coca-Cola sans le logo — juste le rouge, la courbe, la typographie. Vous savez immédiatement de qui il s'agit. C'est ça, une identité visuelle réussie. [Brandbook.io](https://www.brandbook.io/){external} propose d'excellents exemples de chartes graphiques réussies.",
 
       "## Le logo : moins c'est plus (mais pas toujours)",
       "Il y a une tendance ces dernières années à simplifier les logos à l'extrême. Tout le monde veut son logotype en Helvetica minimaliste. Le problème, c'est que quand tout le monde fait pareil, personne ne se distingue.",
@@ -119,18 +123,18 @@ export const articles: Article[] = [
       "En pratique, je commence toujours au crayon. Pas sur Illustrator, pas sur Figma — au crayon, sur papier. C'est là que les idées les plus brutes et les plus honnêtes émergent. Le digital vient après, pour affiner.",
 
       "## La palette de couleurs : science et émotion",
-      "Choisir des couleurs, ce n'est pas une question de goût personnel. C'est de la psychologie appliquée. Le bleu inspire la confiance (d'où son omniprésence dans la finance et la tech). Le rouge crée l'urgence. Le vert évoque la nature et la santé. Le noir projette le luxe et l'autorité.",
+      "Choisir des couleurs, ce n'est pas une question de goût personnel. C'est de la psychologie appliquée. Le bleu inspire la confiance (d'où son omniprésence dans la finance et la tech). Le rouge crée l'urgence. Le vert évoque la nature et la santé. Le noir projette le luxe et l'autorité. Pour explorer des palettes harmonieuses, [Coolors](https://coolors.co/){external} est un outil que je recommande vivement.",
       "Ma méthode : je définis d'abord une couleur principale qui incarne la valeur centrale de la marque. Ensuite, une ou deux couleurs secondaires pour créer du contraste et de la hiérarchie. Et enfin, des couleurs neutres pour le quotidien — les fonds, les textes, les bordures.",
       "Un piège fréquent : choisir trop de couleurs. Trois à cinq, c'est le maximum. Au-delà, la cohérence s'effrite et la marque devient illisible.",
 
       "## La typographie : la voix silencieuse de votre marque",
-      "Si les couleurs sont l'émotion, la typographie est le ton de voix. Une serif classique dit « tradition, expertise, confiance ». Une sans-serif géométrique dit « modernité, accessibilité ». Une display décalée dit « créativité, audace ».",
+      "Si les couleurs sont l'émotion, la typographie est le ton de voix. Une serif classique dit « tradition, expertise, confiance ». Une sans-serif géométrique dit « modernité, accessibilité ». Une display décalée dit « créativité, audace ». [Google Fonts](https://fonts.google.com/){external} offre une bibliothèque riche pour trouver la combinaison parfaite.",
       "Je recommande toujours deux polices maximum : une pour les titres (expressive, avec du caractère) et une pour le corps de texte (lisible, discrète). Le contraste entre les deux crée du rythme visuel sans créer de chaos.",
 
       "## La charte graphique : le mode d'emploi indispensable",
       "Tout ce travail ne sert à rien s'il n'est pas documenté. La charte graphique, c'est le guide qui garantit que votre identité reste cohérente — que ce soit vous qui designiez un post Instagram ou un imprimeur qui prépare vos cartes de visite.",
       "Elle contient les règles d'utilisation du logo (tailles minimales, zones de protection, déclinaisons couleur), les codes couleurs exacts (en HEX, RGB et CMJN), les typographies avec leurs usages, et des exemples d'application sur différents supports.",
-      "C'est un investissement qui paraît superflu au début, mais qui évite des incohérences coûteuses sur le long terme.",
+      "C'est un investissement qui paraît superflu au début, mais qui évite des incohérences coûteuses sur le long terme. Vous souhaitez créer ou refondre votre identité visuelle ? Découvrez mes [services de design](/solutions-design) ou [contactez-moi directement](/contact).",
     ],
   },
   {
@@ -147,8 +151,9 @@ export const articles: Article[] = [
     metaDescription:
       "Auto Layout, composants, variables, raccourcis — 10 techniques Figma concrètes pour diviser votre temps de production par deux.",
     tags: ["Figma", "productivité", "outils", "design system", "workflow"],
+    relatedSlugs: ["importance-ui-ux", "tendances-web-design-2024", "motion-design-web"],
     content: [
-      "Je passe entre 6 et 10 heures par jour sur Figma. Autant dire que chaque raccourci gagné, chaque workflow optimisé, c'est du temps que je peux consacrer à la créativité plutôt qu'à la mécanique. Voici les dix astuces qui ont le plus changé ma façon de travailler — certaines évidentes, d'autres que même des designers expérimentés ignorent.",
+      "Je passe entre 6 et 10 heures par jour sur [Figma](https://www.figma.com/){external}. Autant dire que chaque raccourci gagné, chaque workflow optimisé, c'est du temps que je peux consacrer à la créativité plutôt qu'à la mécanique. Voici les dix astuces qui ont le plus changé ma façon de travailler — certaines évidentes, d'autres que même des designers expérimentés ignorent.",
 
       "## 1. Auto Layout imbriqué : la base de tout",
       "Si vous n'utilisez pas encore l'Auto Layout de manière systématique, arrêtez tout et apprenez-le. Sérieusement. L'idée, c'est d'imbriquer les Auto Layouts comme des poupées russes : un conteneur principal en vertical, qui contient des lignes en horizontal, qui contiennent des éléments avec leur propre espacement.",
@@ -159,7 +164,7 @@ export const articles: Article[] = [
       "Astuce bonus : nommez vos variantes avec une structure claire — Type/State. Par exemple : Primary/Default, Primary/Hover, Secondary/Disabled. Le panneau de propriétés devient lisible instantanément.",
 
       "## 3. Les variables de couleur : le game changer de 2024",
-      "Depuis que Figma a introduit les variables, la gestion des couleurs et des modes (clair/sombre) est devenue presque agréable. Définissez vos couleurs une fois, assignez-les partout, et basculez entre les modes en un clic.",
+      "Depuis que Figma a introduit les variables, la gestion des couleurs et des modes (clair/sombre) est devenue presque agréable. Définissez vos couleurs une fois, assignez-les partout, et basculez entre les modes en un clic. La [documentation officielle Figma](https://help.figma.com/hc/en-us/articles/15339657135383-Guide-to-variables-in-Figma){external} détaille tout le processus.",
       "Mon setup : un groupe « Primitives » avec les couleurs brutes (blue-500, gray-100...), et un groupe « Semantic » qui référence les primitives (background, text-primary, border...). Changer de thème revient à réassigner les sémantiques. Cinq minutes au lieu de cinq heures.",
 
       "## 4. Le plugin « Rename It » pour le nommage en masse",
@@ -182,6 +187,8 @@ export const articles: Article[] = [
 
       "## 10. Un fichier template personnel",
       "C'est peut-être l'astuce la plus simple et la plus efficace. Créez un fichier Figma template avec votre structure de pages habituelle (Cover, Wireframes, UI, Components, Prototype), vos grilles, vos styles de base, et vos composants récurrents. Dupliquez-le à chaque nouveau projet. Vous partez avec 30 minutes d'avance à chaque fois.",
+
+      "Envie de maîtriser Figma et d'autres outils de design ? Découvrez mes [formations en design](/formations). Et si vous avez vos propres astuces, [partagez-les avec moi](/contact) !",
     ],
   },
   {
@@ -198,16 +205,17 @@ export const articles: Article[] = [
     metaDescription:
       "Micro-interactions, transitions, animations de scroll — comment utiliser le motion design pour améliorer l'expérience web sans sacrifier la performance.",
     tags: ["motion design", "animation", "micro-interactions", "UX", "framer motion"],
+    relatedSlugs: ["tendances-web-design-2024", "importance-ui-ux", "responsive-design-mobile-first"],
     content: [
       "La première fois qu'un client m'a demandé d'ajouter des animations sur son site, il m'a dit : « Fais quelque chose qui bouge, comme les gros sites. » Le problème avec cette demande, c'est qu'elle met la forme avant la fonction. Et c'est exactement comme ça qu'on se retrouve avec des sites qui ressemblent à un feu d'artifice permanent — joli cinq secondes, épuisant après.",
 
       "## Pourquoi animer ? La vraie question",
-      "Le mouvement sur le web n'est pas décoratif. Enfin, il ne devrait pas l'être. Une bonne animation remplit au moins un de ces rôles : guider l'attention (« regarde ici »), confirmer une action (« c'est fait »), créer de la continuité (« tu viens de là, tu vas là ») ou exprimer la personnalité de la marque.",
+      "Le mouvement sur le web n'est pas décoratif. Enfin, il ne devrait pas l'être. Une bonne animation remplit au moins un de ces rôles : guider l'attention (« regarde ici »), confirmer une action (« c'est fait »), créer de la continuité (« tu viens de là, tu vas là ») ou exprimer la personnalité de la marque. La ressource [12 Principles of Animation](https://en.wikipedia.org/wiki/Twelve_basic_principles_of_animation){external} de Disney reste une base incontournable, même pour le web.",
       "Si votre animation ne fait rien de tout ça, elle est probablement inutile. Et une animation inutile, c'est du temps de chargement gaspillé et de l'attention volée.",
 
       "## Les micro-interactions : l'art de l'invisible",
       "Les meilleures animations sont celles qu'on ne remarque pas consciemment. Un bouton qui s'enfonce légèrement au clic. Un formulaire qui secoue doucement quand on oublie un champ. Un loader qui progresse de manière organique plutôt que de tourner mécaniquement en rond.",
-      "Ces micro-interactions créent un sentiment de qualité. L'utilisateur ne se dit pas « waouh, quelle belle animation » — il se dit « ce site est vraiment bien fait ». La nuance est cruciale.",
+      "Ces micro-interactions créent un sentiment de qualité. L'utilisateur ne se dit pas « waouh, quelle belle animation » — il se dit « ce site est vraiment bien fait ». La nuance est cruciale. Consultez mon article sur [les tendances web design](/blog/tendances-web-design-2024) pour voir comment ces principes s'intègrent dans les designs modernes.",
 
       "## Les principes d'animation que j'applique systématiquement",
       "Premièrement, la durée. Entre 200ms et 500ms pour la plupart des transitions. En dessous, c'est imperceptible. Au-dessus, ça ralentit l'expérience. Les animations de scroll peuvent durer plus longtemps (800ms à 1200ms) parce que l'utilisateur est déjà en mouvement.",
@@ -215,7 +223,7 @@ export const articles: Article[] = [
       "Troisièmement, la chorégraphie. Quand plusieurs éléments apparaissent en même temps, ils ne doivent pas tous arriver d'un coup. Un léger décalage (stagger) de 50 à 100ms entre chaque élément crée un rythme visuel agréable sans ralentir la page.",
 
       "## Framer Motion : mon outil de prédilection",
-      "Pour les projets React, Framer Motion est devenu mon allié quotidien. Ce qui le distingue ? Une API déclarative qui rend les animations lisibles dans le code, un système de layout animation qui gère automatiquement les transitions de position, et des performances solides grâce à l'accélération GPU.",
+      "Pour les projets React, [Framer Motion](https://www.framer.com/motion/){external} est devenu mon allié quotidien. Ce qui le distingue ? Une API déclarative qui rend les animations lisibles dans le code, un système de layout animation qui gère automatiquement les transitions de position, et des performances solides grâce à l'accélération GPU.",
       "Un exemple concret : pour animer l'apparition d'une grille de cartes au scroll, il me faut littéralement cinq lignes de code. `whileInView`, `initial`, `animate`, `transition` avec un `staggerChildren`. C'est tout. Il y a deux ans, la même chose m'aurait demandé 50 lignes de JavaScript vanilla et une bibliothèque d'Intersection Observer.",
 
       "## La performance, toujours la performance",
@@ -223,7 +231,7 @@ export const articles: Article[] = [
       "Autre point : désactivez les animations non essentielles pour les utilisateurs qui ont activé `prefers-reduced-motion` dans leurs paramètres système. C'est une question d'accessibilité, et c'est aussi une question de respect.",
 
       "## Mon conseil final",
-      "Commencez sans animation. Designez votre page de manière statique, assurez-vous qu'elle fonctionne parfaitement sans mouvement. Ensuite seulement, ajoutez les animations qui apportent de la valeur. C'est contre-intuitif quand on aime le motion design, mais c'est la meilleure façon de s'assurer que chaque animation a sa raison d'être.",
+      "Commencez sans animation. Designez votre page de manière statique, assurez-vous qu'elle fonctionne parfaitement sans mouvement. Ensuite seulement, ajoutez les animations qui apportent de la valeur. C'est contre-intuitif quand on aime le motion design, mais c'est la meilleure façon de s'assurer que chaque animation a sa raison d'être. Vous souhaitez intégrer du motion design dans votre projet ? Découvrez mes [solutions design](/solutions-design) ou [parlons-en](/contact).",
     ],
   },
   {
@@ -240,24 +248,25 @@ export const articles: Article[] = [
     metaDescription:
       "60% du trafic est mobile. Guide concret pour adopter l'approche mobile-first : méthode, erreurs fréquentes et bonnes pratiques responsive.",
     tags: ["responsive", "mobile first", "web design", "CSS", "media queries"],
+    relatedSlugs: ["tendances-web-design-2024", "motion-design-web", "importance-ui-ux"],
     content: [
       "« Mon site est responsive, il s'affiche sur mobile. » J'entends ça régulièrement. Et à chaque fois, je dois expliquer la différence entre un site qui s'affiche sur mobile et un site conçu pour le mobile. Ce n'est pas du tout la même chose. Et en 2024, cette distinction peut faire ou défaire votre projet.",
 
       "## Mobile first, ça veut dire quoi concrètement ?",
-      "L'approche mobile first, c'est commencer par designer la version mobile de votre site, puis l'enrichir progressivement pour les écrans plus grands. Pas l'inverse. Pas « je fais le desktop et je réduis ensuite ».",
+      "L'approche mobile first, c'est commencer par designer la version mobile de votre site, puis l'enrichir progressivement pour les écrans plus grands. Pas l'inverse. Pas « je fais le desktop et je réduis ensuite ». [Smashing Magazine](https://www.smashingmagazine.com/){external} a publié d'excellents guides sur cette méthodologie.",
       "Pourquoi ? Parce que commencer par le mobile vous force à prioriser. Sur un écran de 375px de large, vous ne pouvez pas mettre six colonnes, trois call-to-action et un carrousel. Vous êtes obligé de décider ce qui compte vraiment. Et cette discipline se répercute positivement sur toutes les versions.",
 
       "## Les erreurs que je vois partout",
-      "La première : des éléments tactiles trop petits. Un bouton de 30px de côté, c'est impossible à toucher précisément avec un pouce. Apple recommande 44px minimum. Google dit 48px. Visez 44px au minimum, 48px si vous avez la place.",
+      "La première : des éléments tactiles trop petits. Un bouton de 30px de côté, c'est impossible à toucher précisément avec un pouce. Apple recommande 44px minimum. [Google recommande 48px](https://web.dev/accessible-tap-targets/){external}. Visez 44px au minimum, 48px si vous avez la place.",
       "La deuxième : du texte illisible. Un corps de texte en 14px sur mobile, ça passe. En 12px, c'est une épreuve. Et les contrastes insuffisants qui sont « presque acceptables » sur un bon écran d'ordinateur deviennent catastrophiques sur un smartphone en plein soleil.",
-      "La troisième : ignorer la navigation thumb-friendly. Sur un grand téléphone, le pouce de l'utilisateur atteint naturellement le bas et le centre de l'écran. Les éléments de navigation tout en haut ? Hors de portée sans repositionner toute la main. C'est pour ça que les barres de navigation en bas reviennent en force.",
+      "La troisième : ignorer la navigation thumb-friendly. Sur un grand téléphone, le pouce de l'utilisateur atteint naturellement le bas et le centre de l'écran. Les éléments de navigation tout en haut ? Hors de portée sans repositionner toute la main. C'est pour ça que les barres de navigation en bas reviennent en force. J'en parle dans mon article sur [l'importance du UI/UX design](/blog/importance-ui-ux).",
 
       "## Ma méthode de travail responsive",
       "Je travaille avec trois breakpoints principaux : 375px (mobile standard), 768px (tablette / petit laptop), 1280px (desktop). Pas quinze breakpoints, trois. Ça couvre la quasi-totalité des cas d'usage.",
       "Pour chaque breakpoint, je me pose ces questions : comment la grille s'adapte (1 colonne, 2 colonnes, 3+ colonnes) ? Quels éléments sont masqués ou réorganisés ? La taille du texte est-elle confortable ? Les zones tactiles sont-elles assez grandes ?",
 
       "## Les CSS Container Queries : la révolution silencieuse",
-      "Les media queries classiques réagissent à la taille de la fenêtre. Les container queries réagissent à la taille du conteneur parent. Ça change tout pour les composants réutilisables.",
+      "Les media queries classiques réagissent à la taille de la fenêtre. Les container queries réagissent à la taille du conteneur parent. Ça change tout pour les composants réutilisables. La [documentation MDN](https://developer.mozilla.org/fr/docs/Web/CSS/CSS_containment/Container_queries){external} explique en détail leur fonctionnement.",
       "Imaginez une carte produit qui s'affiche différemment selon qu'elle est dans une sidebar étroite ou dans une grille principale — sans aucune logique conditionnelle dans le JavaScript. C'est exactement ce que permettent les container queries, et le support navigateur est enfin suffisant pour les utiliser en production.",
 
       "## Les images responsive : le point qu'on néglige trop",
@@ -265,7 +274,7 @@ export const articles: Article[] = [
       "Et n'oubliez pas le format : WebP pour la compression, AVIF quand le support est là, avec un fallback JPEG. Sur un site avec beaucoup d'images, le gain en poids de page peut atteindre 50%.",
 
       "## En conclusion",
-      "Le responsive design en 2024, ce n'est plus une fonctionnalité — c'est un prérequis. Mais « responsive » ne signifie pas « ça rentre dans l'écran ». Ça signifie « c'est conçu pour être utilisé confortablement, quel que soit l'appareil ». C'est cette philosophie qui sépare les sites professionnels des sites amateur.",
+      "Le responsive design en 2024, ce n'est plus une fonctionnalité — c'est un prérequis. Mais « responsive » ne signifie pas « ça rentre dans l'écran ». Ça signifie « c'est conçu pour être utilisé confortablement, quel que soit l'appareil ». C'est cette philosophie qui sépare les sites professionnels des sites amateur. Besoin d'un site responsive et performant ? Consultez mes [projets récents](/projets) ou [contactez-moi](/contact) pour discuter de votre projet.",
     ],
   },
 ];
