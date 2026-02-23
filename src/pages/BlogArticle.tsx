@@ -1,11 +1,14 @@
 import { useParams, Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
-import { Calendar, Clock, ArrowLeft, ArrowRight, Tag, ChevronRight } from "lucide-react";
+import { Calendar, Clock, ArrowLeft, ArrowRight, Tag, ChevronRight, ExternalLink } from "lucide-react";
 import { useEffect, useMemo } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { articles } from "@/data/articles";
+import LikeButton from "@/components/blog/LikeButton";
+import CommentSection from "@/components/blog/CommentSection";
+import RelatedArticles from "@/components/blog/RelatedArticles";
 
 export default function BlogArticle() {
   const { slug } = useParams<{ slug: string }>();
@@ -40,8 +43,40 @@ export default function BlogArticle() {
         </h2>
       );
     }
+
+    // Parse inline links: [text](url) and external [text](url){external}
+    const parts = block.split(/(\[[^\]]+\]\([^)]+\)(?:\{external\})?)/g);
+    const rendered = parts.map((part, idx) => {
+      const linkMatch = part.match(/^\[([^\]]+)\]\(([^)]+)\)(\{external\})?$/);
+      if (linkMatch) {
+        const [, text, url, isExternal] = linkMatch;
+        if (isExternal || url.startsWith("http")) {
+          return (
+            <a
+              key={idx}
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gold hover:underline inline-flex items-center gap-1"
+            >
+              {text}
+              <ExternalLink size={12} />
+            </a>
+          );
+        }
+        return (
+          <Link key={idx} to={url} className="text-gold hover:underline">
+            {text}
+          </Link>
+        );
+      }
+      return <span key={idx}>{part}</span>;
+    });
+
     return (
-      <p className="text-muted-foreground leading-relaxed text-base md:text-lg mb-4">{block}</p>
+      <p className="text-muted-foreground leading-relaxed text-base md:text-lg mb-4">
+        {rendered}
+      </p>
     );
   };
 
@@ -56,6 +91,7 @@ export default function BlogArticle() {
         <meta property="og:image" content={article.image} />
         <meta property="og:type" content="article" />
         <meta property="og:url" content={`https://mbutheudesign.com/blog/${article.id}`} />
+        <meta property="article:section" content={article.category} />
       </Helmet>
       <Navbar />
 
@@ -69,7 +105,9 @@ export default function BlogArticle() {
             description: article.metaDescription,
             image: article.image,
             datePublished: article.date,
-            author: { "@type": "Person", name: "Zidane Mbutheu", url: "https://www.behance.net/zidanembutheu" },
+            dateModified: article.date,
+            mainEntityOfPage: `https://mbutheudesign.com/blog/${article.id}`,
+            author: { "@type": "Person", name: "MBUTHEU DESIGN" },
             publisher: { "@type": "Organization", name: "MBUTHEU DESIGN" },
             keywords: article.tags.join(", "),
           }),
@@ -128,12 +166,24 @@ export default function BlogArticle() {
             ))}
           </motion.div>
 
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }} className="flex flex-wrap gap-2 mt-12 pt-8 border-t border-border">
+          {/* Like button */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4 }}
+            className="flex items-center gap-4 mt-10 pt-8 border-t border-border"
+          >
+            <LikeButton articleSlug={article.id} />
+          </motion.div>
+
+          {/* Tags */}
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }} className="flex flex-wrap gap-2 mt-8 pt-8 border-t border-border">
             {article.tags.map((tag) => (
               <span key={tag} className="px-3 py-1 rounded-full bg-muted text-muted-foreground text-xs">#{tag}</span>
             ))}
           </motion.div>
 
+          {/* Prev/Next navigation */}
           <nav className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-12 pt-8 border-t border-border">
             {prevArticle ? (
               <Link to={`/blog/${prevArticle.id}`} className="group card-glass rounded-xl border border-border p-5 hover:border-gold/30 transition-all">
@@ -148,6 +198,12 @@ export default function BlogArticle() {
               </Link>
             ) : <div />}
           </nav>
+
+          {/* Related articles */}
+          <RelatedArticles currentSlug={article.id} relatedSlugs={article.relatedSlugs} />
+
+          {/* Comments */}
+          <CommentSection articleSlug={article.id} />
 
           <div className="text-center mt-12">
             <Link to="/blog" className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-gold text-gold text-sm font-medium hover:bg-gold hover:text-primary-foreground transition-all duration-300">
