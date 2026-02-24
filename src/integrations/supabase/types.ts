@@ -14,6 +14,27 @@ export type Database = {
   }
   public: {
     Tables: {
+      animation_settings: {
+        Row: {
+          id: string
+          key: string
+          updated_at: string
+          value: string
+        }
+        Insert: {
+          id?: string
+          key: string
+          updated_at?: string
+          value: string
+        }
+        Update: {
+          id?: string
+          key?: string
+          updated_at?: string
+          value?: string
+        }
+        Relationships: []
+      }
       article_likes: {
         Row: {
           article_slug: string
@@ -32,6 +53,60 @@ export type Database = {
           created_at?: string
           id?: string
           session_id?: string
+        }
+        Relationships: []
+      }
+      articles: {
+        Row: {
+          category: string | null
+          content: string | null
+          cover_image_alt: string | null
+          cover_image_url: string | null
+          created_at: string
+          excerpt: string | null
+          id: string
+          meta_description: string | null
+          meta_title: string | null
+          published_at: string | null
+          slug: string
+          status: string
+          tags: string[] | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          category?: string | null
+          content?: string | null
+          cover_image_alt?: string | null
+          cover_image_url?: string | null
+          created_at?: string
+          excerpt?: string | null
+          id?: string
+          meta_description?: string | null
+          meta_title?: string | null
+          published_at?: string | null
+          slug: string
+          status?: string
+          tags?: string[] | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          category?: string | null
+          content?: string | null
+          cover_image_alt?: string | null
+          cover_image_url?: string | null
+          created_at?: string
+          excerpt?: string | null
+          id?: string
+          meta_description?: string | null
+          meta_title?: string | null
+          published_at?: string | null
+          slug?: string
+          status?: string
+          tags?: string[] | null
+          title?: string
+          updated_at?: string
         }
         Relationships: []
       }
@@ -65,6 +140,120 @@ export type Database = {
           id?: string
           status?: string
           website?: string | null
+        }
+        Relationships: []
+      }
+      design_settings: {
+        Row: {
+          id: string
+          key: string
+          updated_at: string
+          value: string
+        }
+        Insert: {
+          id?: string
+          key: string
+          updated_at?: string
+          value: string
+        }
+        Update: {
+          id?: string
+          key?: string
+          updated_at?: string
+          value?: string
+        }
+        Relationships: []
+      }
+      projects: {
+        Row: {
+          category: string | null
+          content: Json | null
+          created_at: string
+          description: string | null
+          display_order: number | null
+          external_url: string | null
+          id: string
+          images: string[] | null
+          meta_description: string | null
+          meta_title: string | null
+          slug: string
+          status: string
+          title: string
+          tools: string[] | null
+          updated_at: string
+        }
+        Insert: {
+          category?: string | null
+          content?: Json | null
+          created_at?: string
+          description?: string | null
+          display_order?: number | null
+          external_url?: string | null
+          id?: string
+          images?: string[] | null
+          meta_description?: string | null
+          meta_title?: string | null
+          slug: string
+          status?: string
+          title: string
+          tools?: string[] | null
+          updated_at?: string
+        }
+        Update: {
+          category?: string | null
+          content?: Json | null
+          created_at?: string
+          description?: string | null
+          display_order?: number | null
+          external_url?: string | null
+          id?: string
+          images?: string[] | null
+          meta_description?: string | null
+          meta_title?: string | null
+          slug?: string
+          status?: string
+          title?: string
+          tools?: string[] | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      site_settings: {
+        Row: {
+          id: string
+          key: string
+          updated_at: string
+          value: string
+        }
+        Insert: {
+          id?: string
+          key: string
+          updated_at?: string
+          value: string
+        }
+        Update: {
+          id?: string
+          key?: string
+          updated_at?: string
+          value?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
         }
         Relationships: []
       }
@@ -102,10 +291,16 @@ export type Database = {
       }
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "moderator" | "user"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -232,6 +427,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "moderator", "user"],
+    },
   },
 } as const
