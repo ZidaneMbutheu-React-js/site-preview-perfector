@@ -1,7 +1,9 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { Mail, Linkedin, Send, MapPin, Globe } from "lucide-react";
+import { Mail, Linkedin, Send, MapPin, Globe, Loader2 } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 
 const socials = [
   {
@@ -31,11 +33,39 @@ export default function ContactSection() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
   const [sent, setSent] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSent(true);
-    setTimeout(() => setSent(false), 4000);
+    setIsLoading(true);
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      const { data, error } = await supabase.functions.invoke('send-contact-email', {
+        body: {
+          firstName: formData.get('firstName') as string,
+          lastName: formData.get('lastName') as string,
+          email: formData.get('email') as string,
+          projectType: formData.get('projectType') as string,
+          message: formData.get('message') as string,
+        },
+      });
+
+      if (error) throw error;
+      if (data?.error) throw new Error(data.error);
+
+      setSent(true);
+      form.reset();
+      setTimeout(() => setSent(false), 4000);
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : "Une erreur est survenue lors de l'envoi.";
+      toast({ title: "Erreur d'envoi", description: message, variant: "destructive" });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -129,6 +159,7 @@ export default function ContactSection() {
                   <label className="block text-sm text-muted-foreground mb-2">Prénom</label>
                   <input
                     type="text"
+                    name="firstName"
                     required
                     placeholder="Jean"
                     className="w-full px-4 py-3 rounded-xl bg-muted border border-border text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:border-gold/60 transition-colors"
@@ -138,6 +169,7 @@ export default function ContactSection() {
                   <label className="block text-sm text-muted-foreground mb-2">Nom</label>
                   <input
                     type="text"
+                    name="lastName"
                     required
                     placeholder="Dupont"
                     className="w-full px-4 py-3 rounded-xl bg-muted border border-border text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:border-gold/60 transition-colors"
@@ -149,6 +181,7 @@ export default function ContactSection() {
                 <label className="block text-sm text-muted-foreground mb-2">Email</label>
                 <input
                   type="email"
+                  name="email"
                   required
                   placeholder="jean@exemple.fr"
                   className="w-full px-4 py-3 rounded-xl bg-muted border border-border text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:border-gold/60 transition-colors"
@@ -158,6 +191,7 @@ export default function ContactSection() {
               <div>
                 <label className="block text-sm text-muted-foreground mb-2">Type de projet</label>
                 <select
+                  name="projectType"
                   required
                   className="w-full px-4 py-3 rounded-xl bg-muted border border-border text-foreground text-sm focus:outline-none focus:border-gold/60 transition-colors"
                 >
@@ -173,6 +207,7 @@ export default function ContactSection() {
               <div>
                 <label className="block text-sm text-muted-foreground mb-2">Votre message</label>
                 <textarea
+                  name="message"
                   required
                   rows={4}
                   placeholder="Décrivez votre vision, vos besoins, votre budget..."
@@ -182,9 +217,15 @@ export default function ContactSection() {
 
               <button
                 type="submit"
-                className="w-full py-3.5 rounded-xl bg-gold text-primary-foreground font-semibold font-display flex items-center justify-center gap-2 hover:shadow-[0_0_30px_hsl(38_90%_55%/0.4)] transition-all duration-300 hover:scale-[1.02]"
+                disabled={isLoading || sent}
+                className="w-full py-3.5 rounded-xl bg-gold text-primary-foreground font-semibold font-display flex items-center justify-center gap-2 hover:shadow-[0_0_30px_hsl(38_90%_55%/0.4)] transition-all duration-300 hover:scale-[1.02] disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100"
               >
-                {sent ? "Message envoyé ! ✓" : (
+                {sent ? "Message envoyé ! ✓" : isLoading ? (
+                  <>
+                    <Loader2 size={16} className="animate-spin" />
+                    Envoi en cours…
+                  </>
+                ) : (
                   <>
                     <Send size={16} />
                     Démarrons votre projet
