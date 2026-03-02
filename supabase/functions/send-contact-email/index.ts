@@ -59,8 +59,8 @@ Deno.serve(async (req) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        from: 'MBUTHEU DESIGN <onboarding@resend.dev>',
-        to: ['mbutheuzidane@gmail.com'],
+        from: 'MBUTHEU DESIGN <contact@mbutheudesign.com>',
+        to: ['contact@mbutheudesign.com'],
         subject: `Nouveau message de ${firstName} ${lastName} — ${projectLabels[projectType] || projectType}`,
         html: htmlBody,
         reply_to: email,
