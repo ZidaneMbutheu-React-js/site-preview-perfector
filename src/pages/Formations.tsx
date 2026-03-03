@@ -232,9 +232,16 @@ const FormationCard = ({
   );
 };
 
+const categories = ["Tous", "UI/UX", "Branding", "Web", "Print"] as const;
+
 const Formations = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
+  const [activeCategory, setActiveCategory] = useState("Tous");
+
+  const filtered = activeCategory === "Tous"
+    ? formations
+    : formations.filter((f) => f.category === activeCategory);
 
   return (
     <div className="min-h-screen bg-background">
@@ -312,8 +319,33 @@ const Formations = () => {
         {/* Formations Grid */}
         <section ref={ref} className="px-6 py-24 bg-surface">
           <div className="max-w-7xl mx-auto">
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-              {formations.map((f, i) => (
+            {/* Category Filter */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5 }}
+              className="flex flex-wrap items-center justify-center gap-3 mb-14"
+            >
+              {categories.map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setActiveCategory(cat)}
+                  className={`px-5 py-2 rounded-full text-sm font-medium tracking-wide transition-all duration-300 border ${
+                    activeCategory === cat
+                      ? "bg-gold text-primary-foreground border-gold shadow-[0_0_20px_hsl(var(--gold)/0.3)]"
+                      : "bg-transparent text-muted-foreground border-border hover:border-gold/40 hover:text-foreground"
+                  }`}
+                >
+                  {cat}
+                </button>
+              ))}
+            </motion.div>
+
+            <motion.div
+              layout
+              className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5"
+            >
+              {filtered.map((f, i) => (
                 <FormationCard
                   key={f.title}
                   formation={f}
@@ -321,7 +353,7 @@ const Formations = () => {
                   inView={inView}
                 />
               ))}
-            </div>
+            </motion.div>
           </div>
         </section>
       </main>

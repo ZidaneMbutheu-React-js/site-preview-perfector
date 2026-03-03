@@ -29,7 +29,7 @@ const whyMe = [
   { emoji: "✨", title: "Designs uniques", desc: "Des créations sur mesure, jamais de templates génériques." },
 ];
 
-export default function ContactSection() {
+export default function ContactSection({ defaultProjectType }: { defaultProjectType?: string }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
   const [sent, setSent] = useState(false);
@@ -193,6 +193,7 @@ export default function ContactSection() {
                 <select
                   name="projectType"
                   required
+                  defaultValue={defaultProjectType || ""}
                   className="w-full px-4 py-3 rounded-xl bg-muted border border-border text-foreground text-sm focus:outline-none focus:border-gold/60 transition-colors"
                 >
                   <option value="" className="bg-surface">Sélectionnez un service</option>
@@ -200,6 +201,7 @@ export default function ContactSection() {
                   <option value="graphic" className="bg-surface">Design graphique</option>
                   <option value="uiux" className="bg-surface">UI/UX Design</option>
                   <option value="branding" className="bg-surface">Identité de marque</option>
+                  <option value="formation" className="bg-surface">Formation</option>
                   <option value="other" className="bg-surface">Autre</option>
                 </select>
               </div>
