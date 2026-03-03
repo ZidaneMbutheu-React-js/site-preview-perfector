@@ -1,8 +1,13 @@
 import { Helmet } from "react-helmet-async";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ContactSection from "@/components/ContactSection";
+import { useSearchParams } from "react-router-dom";
 
 const Contact = () => {
+  const [searchParams] = useSearchParams();
+  const utmSource = searchParams.get("utm_source");
+
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
@@ -14,11 +19,8 @@ const Contact = () => {
         <meta property="og:url" content="https://mbutheudesign.com/contact" />
       </Helmet>
       <Navbar />
-      <main className="pt-20 px-6">
-        <div className="max-w-6xl mx-auto py-20">
-          <h1 className="font-display text-4xl font-bold text-foreground">Contact</h1>
-          <p className="text-muted-foreground mt-4">Page en construction.</p>
-        </div>
+      <main className="pt-20">
+        <ContactSection defaultProjectType={utmSource === "formations" ? "formation" : undefined} />
       </main>
       <Footer />
     </div>
