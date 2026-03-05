@@ -4,6 +4,7 @@ import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
 import SkillsSection from "@/components/SkillsSection";
 import ProjectsSection from "@/components/ProjectsSection";
+import ProcessSection from "@/components/ProcessSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
@@ -36,6 +37,10 @@ const Index = () => {
         <SectionDivider />
         <ParallaxSection offset={35}>
           <ProjectsSection />
+        </ParallaxSection>
+        <SectionDivider />
+        <ParallaxSection offset={30}>
+          <ProcessSection />
         </ParallaxSection>
         <SectionDivider />
         <ParallaxSection offset={20}>
