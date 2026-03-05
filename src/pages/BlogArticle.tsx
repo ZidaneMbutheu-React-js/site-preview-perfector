@@ -166,7 +166,7 @@ export default function BlogArticle() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
-                className="prose prose-invert max-w-none text-muted-foreground leading-relaxed"
+                className="prose prose-invert max-w-none text-muted-foreground"
                 dangerouslySetInnerHTML={{ __html: article.content }}
               />
             )}
