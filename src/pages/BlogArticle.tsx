@@ -63,23 +63,49 @@ export default function BlogArticle() {
       <Navbar />
 
       {article && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
+        <>
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "BlogPosting",
+                headline: article.title,
+                description: article.meta_description || article.excerpt,
+                image: article.cover_image_url,
+                datePublished: article.published_at,
+                mainEntityOfPage: `https://mbutheudesign.com/blog/${article.slug}`,
+                author: { "@type": "Person", name: "MBUTHEU DESIGN" },
+                publisher: { "@type": "Organization", name: "MBUTHEU DESIGN" },
+                keywords: article.tags?.join(", "),
+              }),
+            }}
+          />
+          {(() => {
+            // Extract FAQ from article content (h3 = question, next p = answer)
+            if (!article.content) return null;
+            const faqMatches = [...article.content.matchAll(/<h3>(.*?)<\/h3>\s*<p>(.*?)<\/p>/gs)];
+            if (faqMatches.length === 0) return null;
+            const faqSchema = {
               "@context": "https://schema.org",
-              "@type": "BlogPosting",
-              headline: article.title,
-              description: article.meta_description || article.excerpt,
-              image: article.cover_image_url,
-              datePublished: article.published_at,
-              mainEntityOfPage: `https://mbutheudesign.com/blog/${article.slug}`,
-              author: { "@type": "Person", name: "MBUTHEU DESIGN" },
-              publisher: { "@type": "Organization", name: "MBUTHEU DESIGN" },
-              keywords: article.tags?.join(", "),
-            }),
-          }}
-        />
+              "@type": "FAQPage",
+              mainEntity: faqMatches.map((m) => ({
+                "@type": "Question",
+                name: m[1].replace(/<[^>]*>/g, ''),
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: m[2].replace(/<[^>]*>/g, ''),
+                },
+              })),
+            };
+            return (
+              <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+              />
+            );
+          })()}
+        </>
       )}
 
       <main className="pt-24 pb-16 px-6">
