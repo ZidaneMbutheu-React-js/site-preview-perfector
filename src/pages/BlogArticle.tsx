@@ -2,12 +2,13 @@ import { useParams, Link, Navigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { Calendar, ArrowLeft, Tag, ChevronRight } from "lucide-react";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useArticle } from "@/hooks/useArticle";
 import LikeButton from "@/components/blog/LikeButton";
 import CommentSection from "@/components/blog/CommentSection";
+import ArticleTOC, { extractHeadings, injectHeadingIds } from "@/components/blog/ArticleTOC";
 
 function ArticleDetailSkeleton() {
   return (
@@ -36,6 +37,12 @@ function ArticleDetailSkeleton() {
 export default function BlogArticle() {
   const { slug } = useParams<{ slug: string }>();
   const { article, loading, error } = useArticle(slug);
+
+  const processedContent = useMemo(() => {
+    if (!article?.content) return null;
+    const headings = extractHeadings(article.content);
+    return injectHeadingIds(article.content, headings);
+  }, [article?.content]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -82,7 +89,6 @@ export default function BlogArticle() {
             }}
           />
           {(() => {
-            // Extract FAQ from article content (h3 = question, next p = answer)
             if (!article.content) return null;
             const faqMatches = [...article.content.matchAll(/<h3>(.*?)<\/h3>\s*<p>(.*?)<\/p>/gs)];
             if (faqMatches.length === 0) return null;
@@ -112,93 +118,96 @@ export default function BlogArticle() {
         {loading && <ArticleDetailSkeleton />}
 
         {!loading && article && (
-          <article className="max-w-3xl mx-auto">
-            <motion.nav
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4 }}
-              className="flex items-center gap-2 text-sm text-muted-foreground mb-8"
-              aria-label="Fil d'Ariane"
-            >
-              <Link to="/" className="hover:text-gold transition-colors">Accueil</Link>
-              <ChevronRight size={14} />
-              <Link to="/blog" className="hover:text-gold transition-colors">Blog</Link>
-              <ChevronRight size={14} />
-              <span className="text-foreground truncate max-w-[200px]">{article.title}</span>
-            </motion.nav>
-
-            <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-              {article.category && (
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gold/20 text-gold text-xs font-medium mb-4">
-                  <Tag size={12} />
-                  {article.category}
-                </span>
-              )}
-
-              <h1 className="font-display text-3xl md:text-5xl font-bold text-foreground leading-tight mb-6">
-                {article.title}
-              </h1>
-
-              {article.published_at && (
-                <div className="flex items-center gap-6 text-muted-foreground text-sm mb-8">
-                  <span className="flex items-center gap-1.5">
-                    <Calendar size={14} />
-                    {new Date(article.published_at).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}
-                  </span>
-                </div>
-              )}
-            </motion.div>
-
-            {article.cover_image_url && (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.98 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="relative rounded-2xl overflow-hidden mb-10 aspect-video"
-              >
-                <img src={article.cover_image_url} alt={article.cover_image_alt || article.title} className="w-full h-full object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />
-              </motion.div>
-            )}
-
-            {article.content && (
-              <motion.div
+          <div className="max-w-6xl mx-auto flex gap-8">
+            {/* Main article */}
+            <article className="max-w-3xl flex-1 min-w-0">
+              <motion.nav
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-                className="prose prose-invert max-w-none text-muted-foreground"
-                dangerouslySetInnerHTML={{ __html: article.content }}
-              />
-            )}
+                transition={{ duration: 0.4 }}
+                className="flex items-center gap-2 text-sm text-muted-foreground mb-8"
+                aria-label="Fil d'Ariane"
+              >
+                <Link to="/" className="hover:text-gold transition-colors">Accueil</Link>
+                <ChevronRight size={14} />
+                <Link to="/blog" className="hover:text-gold transition-colors">Blog</Link>
+                <ChevronRight size={14} />
+                <span className="text-foreground truncate max-w-[200px]">{article.title}</span>
+              </motion.nav>
 
-            {/* Like button */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
-              className="flex items-center gap-4 mt-10 pt-8 border-t border-border"
-            >
-              <LikeButton articleSlug={article.slug} />
-            </motion.div>
+              <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+                {article.category && (
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gold/20 text-gold text-xs font-medium mb-4">
+                    <Tag size={12} />
+                    {article.category}
+                  </span>
+                )}
 
-            {/* Tags */}
-            {article.tags && article.tags.length > 0 && (
-              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }} className="flex flex-wrap gap-2 mt-8 pt-8 border-t border-border">
-                {article.tags.map((tag) => (
-                  <span key={tag} className="px-3 py-1 rounded-full bg-muted text-muted-foreground text-xs">#{tag}</span>
-                ))}
+                <h1 className="font-display text-3xl md:text-5xl font-bold text-foreground leading-tight mb-6">
+                  {article.title}
+                </h1>
+
+                {article.published_at && (
+                  <div className="flex items-center gap-6 text-muted-foreground text-sm mb-8">
+                    <span className="flex items-center gap-1.5">
+                      <Calendar size={14} />
+                      {new Date(article.published_at).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}
+                    </span>
+                  </div>
+                )}
               </motion.div>
-            )}
 
-            {/* Comments */}
-            <CommentSection articleSlug={article.slug} />
+              {article.cover_image_url && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.98 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  className="relative rounded-2xl overflow-hidden mb-10 aspect-video"
+                >
+                  <img src={article.cover_image_url} alt={article.cover_image_alt || article.title} className="w-full h-full object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />
+                </motion.div>
+              )}
 
-            <div className="text-center mt-12">
-              <Link to="/blog" className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-gold text-gold text-sm font-medium hover:bg-gold hover:text-primary-foreground transition-all duration-300">
-                <ArrowLeft size={14} />Tous les articles
-              </Link>
-            </div>
-          </article>
+              {processedContent && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                  className="prose prose-invert max-w-none text-muted-foreground"
+                  dangerouslySetInnerHTML={{ __html: processedContent }}
+                />
+              )}
+
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.4 }}
+                className="flex items-center gap-4 mt-10 pt-8 border-t border-border"
+              >
+                <LikeButton articleSlug={article.slug} />
+              </motion.div>
+
+              {article.tags && article.tags.length > 0 && (
+                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }} className="flex flex-wrap gap-2 mt-8 pt-8 border-t border-border">
+                  {article.tags.map((tag) => (
+                    <span key={tag} className="px-3 py-1 rounded-full bg-muted text-muted-foreground text-xs">#{tag}</span>
+                  ))}
+                </motion.div>
+              )}
+
+              <CommentSection articleSlug={article.slug} />
+
+              <div className="text-center mt-12">
+                <Link to="/blog" className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-gold text-gold text-sm font-medium hover:bg-gold hover:text-primary-foreground transition-all duration-300">
+                  <ArrowLeft size={14} />Tous les articles
+                </Link>
+              </div>
+            </article>
+
+            {/* TOC Sidebar */}
+            {article.content && <ArticleTOC content={article.content} />}
+          </div>
         )}
       </main>
       <Footer />
