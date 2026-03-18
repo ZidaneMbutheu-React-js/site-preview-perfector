@@ -5,12 +5,13 @@ import { useAdminAuth } from '@/hooks/admin/useAdminAuth';
 import StatsCard from '@/components/admin/StatsCard';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { MessageSquare, FileText, FolderOpen, CheckCircle, Plus, ArrowRight, List, Heading } from 'lucide-react';
+import { MessageSquare, FileText, FolderOpen, CheckCircle, Plus, ArrowRight, List, Heading, Palette } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { format } from 'date-fns';
 import { fr } from 'date-fns/locale';
 import type { AdminComment } from '@/types/admin';
 import { extractHeadings } from '@/components/blog/ArticleTOC';
+import { behanceProjects, categories } from '@/data/behanceProjects';
 
 interface ArticleStructure {
   id: string;
