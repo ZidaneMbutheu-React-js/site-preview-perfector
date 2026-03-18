@@ -87,10 +87,41 @@ export default function Dashboard() {
       {/* Stats grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
         <StatsCard title="Articles publiés" value={articleCount} icon={FileText} index={0} />
-        <StatsCard title="Projets publiés" value={projectCount} icon={FolderOpen} index={1} />
+        <StatsCard title="Projets Behance" value={behanceProjects.length} icon={FolderOpen} index={1} />
         <StatsCard title="Commentaires en attente" value={pendingCount} icon={MessageSquare} alert index={2} />
         <StatsCard title="Commentaires approuvés" value={approvedCount} icon={CheckCircle} index={3} />
       </div>
+
+      {/* Behance Portfolio Overview */}
+      <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.45, duration: 0.4 }}>
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center gap-2">
+            <Palette size={16} style={{ color: '#F5A623' }} />
+            <h2 className="font-display text-base font-semibold" style={{ color: '#EAE5D9' }}>
+              Portfolio Behance — par catégorie
+            </h2>
+          </div>
+          <Button variant="ghost" size="sm" asChild style={{ color: '#F5A623' }}>
+            <a href="https://www.behance.net/zidanembutheu" target="_blank" rel="noopener noreferrer">Behance <ArrowRight className="h-3 w-3 ml-1" /></a>
+          </Button>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {categories.filter(c => c !== "Tous").map((cat) => {
+            const count = behanceProjects.filter(p => p.category === cat).length;
+            return (
+              <div
+                key={cat}
+                className="rounded-2xl border p-5 flex flex-col gap-2"
+                style={{ background: 'linear-gradient(135deg, #0D1021 0%, #111827 100%)', borderColor: 'rgba(245,166,35,0.15)' }}
+              >
+                <span className="text-xs font-medium" style={{ color: 'rgba(234,229,217,0.5)' }}>{cat}</span>
+                <span className="font-display text-2xl font-bold" style={{ color: '#F5A623' }}>{count}</span>
+                <span className="text-xs" style={{ color: 'rgba(234,229,217,0.4)' }}>projet{count > 1 ? 's' : ''}</span>
+              </div>
+            );
+          })}
+        </div>
+      </motion.div>
 
       {/* Quick actions */}
       <motion.div className="flex flex-wrap gap-3" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5, duration: 0.3 }}>
